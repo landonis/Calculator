@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="style.css" rel="stylesheet">
+</head>
+<body>
+<div class="grid-container">
+	<div class="grid-item" id="output">hey there, welcome man.</div>
+	<input type="button" onclick="outputNum(value)" value="7" class="grid-item">
+	<input type="button" onclick="outputNum(value)" value="8" class="grid-item">  
+	<input type="button" onclick="outputNum(value)" value="9" class="grid-item">
+	<input type="button" onclick="divide()" value="/" class="grid-item">
+	<input type="button" onclick="outputNum(value)" value="4" class="grid-item">
+	<input type="button" onclick="outputNum(value)" value="5" class="grid-item">  
+	<input type="button" onclick="outputNum(value)" value="6" class="grid-item">
+	<input type="button" onclick="times()" value="x" class="grid-item">
+	<input type="button" onclick="outputNum(value)" value="1" class="grid-item">
+	<input type="button" onclick="outputNum(value)" value="2" class="grid-item">  
+	<input type="button" onclick="outputNum(value)" value="3" class="grid-item">
+	<input type="button" onclick="add()" value="+" class="grid-item">
+	<input type="button" onclick="del()" value="DEL" class="grid-item">
+	<input type="button" onclick="outputNum(value)" value="0" class="grid-item">  
+	<input type="button" onclick="outputNum(value)" value="." class="grid-item"> 
+	<input type="button" onclick="minus()" value="-" class="grid-item">
+	<input type="button" id="ac" onclick="allClear()" value="AC" class="grid-item">
+	<input type="button" id="equals" onclick="equals()" value="=" class="grid-item"> 
+</div>
+<script>
+var current = "";
+var tic = "";
+var cache = 0.0;
+function updateCalc(val)
+{
+	current = current + "";
+	if (cache!=0)
+	{
+		document.getElementById('output').innerHTML = cache + " " + tic + " " + val;
+	}
+	else
+	{
+		document.getElementById('output').innerHTML = val;
+	}
+}
+function outputNum(value)
+{
+	current = current + value;
+	updateCalc(current);
+}
+function del()
+{
+	if (current)
+	{
+		current = current.slice(0, -1);
+	}
+	else if(tic)
+	{
+		tic = "";
+		current = cache;
+		cache = 0.0
+	}
+		updateCalc(current);
+}
+function add()
+{
+	if (current=="") { return };
+	if (cache==0)
+	{
+		cache = parseFloat(current);
+	}
+	else if(tic=="+")
+	{
+		cache = cache + parseFloat(current);
+	}
+	current = "";
+	tic = "+";
+	updateCalc(current); 
+}
+function minus()
+{
+	if (current=="") { return };
+	if (cache==0)
+	{
+		cache = parseFloat(current);
+	}
+	else if(tic=="-")
+	{
+		cache = cache - parseFloat(current);
+	}
+	current = "";
+	tic = "-";
+	updateCalc(current); 
+}
+function times()
+{
+	if (current=="") { return };
+	if (cache==0)
+	{
+		cache = parseFloat(current);
+	}
+	else if(tic=="*")
+	{
+		cache = cache * parseFloat(current);
+	}
+	current = "";
+	tic = "*";
+	updateCalc(current); 
+}
+function divide()
+{
+	if (current=="") { return };
+	if (cache==0)
+	{
+		cache = parseFloat(current);
+	}
+	else if(tic=="/")
+	{
+		cache = cache / parseFloat(current);
+	}
+	current = "";
+	tic = "/";
+	updateCalc(current); 
+}
+function equals()
+{
+	switch(tic)
+	if (tic=="+")
+	{
+		current = cache + parseFloat(current);
+	}
+	else if (tic=="-")
+	{
+		current = cache - parseFloat(current);
+	}
+	else if (tic=="*")
+	{
+		current = cache * parseFloat(current);
+	}
+	else if (tic=="/")
+	{
+		current = cache / parseFloat(current);
+	}
+	
+	tic = "";
+	cache = 0;
+	updateCalc(current);
+}
+function allClear()
+{
+	current = "";
+	tic = "";
+	cache = 0;
+	updateCalc("All Cleared");
+}
+</script>
+</body>
