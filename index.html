@@ -43,6 +43,10 @@ function updateCalc(val)
 }
 function outputNum(value)
 {
+	if (value == "." && current.charAt(current.length-1) == ".")
+	{
+		return;
+	}
 	current = current + value;
 	updateCalc(current);
 }
@@ -122,6 +126,7 @@ function divide()
 }
 function equals()
 {
+	
 	if (tic=="+")
 	{
 		current = cache + parseFloat(current);
