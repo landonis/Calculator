@@ -10,7 +10,7 @@ body
 	display: grid;
 	border-radius: 25px;
 	grid-template-columns: repeat(4, 1fr);
-	grid-template-rows: 20%, 12%, 12%, 12%, 12%, 12%;
+	grid-template-rows:  3fr 2fr 2fr 2fr 2fr 2fr;
 	grid-gap: 10px;
 	background-color: rgba(200, 200, 200, .8);
 	padding: 25px;
